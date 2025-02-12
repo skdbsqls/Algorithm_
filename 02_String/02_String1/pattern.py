@@ -135,3 +135,38 @@ while i + j < N + M:  # 복사할 문자가 남아있으면
 
 print(ans)  # ['A', 'E', 'B', 'F', 'C', 'G', 'D', 'H', 'I', 'J', 'K', 'L', 'M', 'N']
 print(''.join(ans))  # AEBFCGDHIJKLMN
+
+# [연습문제3 - 변형] 풀이3
+str_a = input()
+str_b = input()
+
+# 다음에 넣을 a글자와 b글자의 인덱스
+a_idx, b_idx = 0, 0
+
+# 결과를 담을 result
+result = []
+
+# a_idx가 str_a의 길이보다 작고, b_idx가 str_b의 길이보다 작을동안
+while a_idx < len(str_a) and b_idx < len(str_b):
+
+    # result에 순서대로 str_a[a_idx], str_b[b_idx]를 넣어준다.
+    result.append(str_a[a_idx])
+    result.append(str_b[b_idx])
+
+    # 그리고 a_idx와 b_idx를 하나씩 키운다.
+    a_idx += 1
+    b_idx += 1
+
+# a_idx가 str_a의 길이보다 작을 동안,
+while a_idx < len(str_a):
+    # result에 str_a[a_idx]를 넣어준다.
+    result.append(str_a[a_idx])
+    a_idx += 1
+
+# b_idx str_b 길이보다 작을 동안,
+while b_idx < len(str_b):
+    # result에 str_b[b_idx]를 넣어준다.
+    result.append(str_b[b_idx])
+    b_idx += 1
+
+print(f'{"".join(result)}')
