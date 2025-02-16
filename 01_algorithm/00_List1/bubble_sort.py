@@ -6,11 +6,17 @@ for i in range(n - 1, 0, -1):
         if nums[j] > nums[j + 1]:
             nums[j], nums[j + 1] = nums[j + 1], nums[j]
 
+print(nums)  # [7, 12, 42, 55, 78]
 
+
+nums = [55, 7, 78, 12, 42]
+n = 5
 for i in range(n):
     for j in range(n - i - 1):
         if nums[j] > nums[j + 1]:
             nums[j], nums[j + 1] = nums[j + 1], nums[j]
+
+print(nums)  # [7, 12, 42, 55, 78]
 
 
 def bubble_sort(nums):
