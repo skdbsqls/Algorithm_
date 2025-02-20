@@ -27,14 +27,17 @@ for _ in range(10):
         for delta in deltas:
             ni, nj = ti + delta[0], tj + delta[1]  # 다음 위치
 
-            # 다음 위치가 끝점이면 성공
-            if maze[ni][nj] == 3:
-                success = 1
-                break
+            # 다음 위치가 유효한 인덱스이면서
+            if 0 <= ni < 16 and 0 <= nj < 16:
 
-            # 유효한 인덱스이면서, 길(0)이면 go
-            if 0 <= ni < 16 and 0 <= nj < 16 and maze[ni][nj] == 0:
-                my_queue.append([ni, nj])  # 큐에 넣고
-                maze[ni][nj] = 1  # 방문 표시
+                # 끝점(3)이면
+                if maze[ni][nj] == 3:
+                    success = 1  # 성공
+                    break
+
+                # 길(0)이면
+                if maze[ni][nj] == 0:
+                    my_queue.append([ni, nj])  # 큐에 넣고
+                    maze[ni][nj] = 1  # 방문 표시
 
     print(f'#{tc} {success}')
