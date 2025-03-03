@@ -15,35 +15,28 @@ for _ in range(1, 11):
 
         adj_list[v].append(w)
 
-    stack = []  # 스택
-    visited = [0] * 100  # 방문 표시
-    v = 0  # 출발점에서 시작
+    # DFS 탐색을 위한 초기 설정
+    stack = []  # DFS를 위한 스택
+    visited = [0] * 100  # 방문 여부 체크 (0: 미방문, 1: 방문)
+    v = 0  # 출발점 (0번 노드)
 
     while True:
-        # 도착점에 도달했다면,
         if v == 99:
-            result = 1
+            result = 1  # 도착점에 도달하면 result = 1
 
-        # 방문 표시
         if visited[v] == 0:
-            visited[v] = 1
+            visited[v] = 1  # 방문 표시
 
-        # 인접한 곳 중
-        for w in adj_list[v]:
-            # 방문 안 한 곳이 있다면,
-            if visited[w] == 0:
-                stack.append(v)  # 현재 위치를 스택에 담고,
-                v = w  # 위치 이동
-                break
-
-        # 인접한 곳 중 방문 안 한 곳이 없는데,
+        for w in adj_list[v]:  # 현재 노드 v의 인접 노드 w 탐색
+            if visited[w] == 0:  # 방문하지 않은 노드가 있다면
+                stack.append(v)  # 현재 노드를 스택에 저장 (되돌아올 곳)
+                v = w  # 이동
+                break  # 이동했으면 반복 종료 (DFS 방식)
         else:
-            # 스택이 비어 있지 않다면,
             if stack:
-                v = stack.pop()  # 돌아감
-            # 출발점으로 돌아왔다면,
-            if stack[-1] == 0:
-                break
+                v = stack.pop()  # 스택에서 꺼내 되돌아감
+            else:
+                break  # 스택이 비었으면 탐색 종료
 
     print(f'#{tc} {result}')
 

@@ -7,8 +7,6 @@ for tc in range(1, T + 1):
     N = int(input())
     maze = [list(map(int, input())) for _ in range(N)]
 
-    result = 0  # 결과
-
     # 시작점 찾기
     si = sj = 0
     for i in range(N):
@@ -25,11 +23,17 @@ for tc in range(1, T + 1):
         [-1, 0]
     ]
     my_stack = [[si, sj]]
-    maze[si][sj] = 1
+    visited = [[0] * N for _ in range(N)]
+    result = 0  # 결과
 
     # 방문할 곳이 더이상 없을 때까지 반복
     while my_stack:
         ti, tj = my_stack.pop()  # 현재 위치 스택에서 꺼내기
+
+        # 끝점(3)이면
+        if maze[ti][tj] == 3:
+            result = 1  # 성공
+            break
 
         # 델타 탐색
         for delta in deltas:
@@ -37,14 +41,7 @@ for tc in range(1, T + 1):
 
             # 다음 위치가 유효한 인덱스이면서
             if 0 <= ni < N and 0 <= nj < N:
-
-                # 끝점(3)이면
-                if maze[ni][nj] == 3:
-                    result = 1  # 성공
-                    break
-
-                # 길(0)이면
-                if maze[ni][nj] != 1:
+                if maze[ni][nj] != 1 and visited[ni][nj] == 0:
                     my_stack.append([ni, nj])  # 스택에 넣어주고
                     maze[ni][nj] = 1  # 방문 표시
 
