@@ -12,11 +12,11 @@ ops = {
 
 
 # 연산하기
-def in_order(n):
+def calculate(n):
     if n:
-        left_c = elements[int(left[n])]  # 왼쪽 자식(피연산자)
-        operator = elements[n]  # 연산자
-        right_c = elements[int(right[n])]  # 오른쪽 자식(피연산자)
+        left_c = elements[int(left[n])]  # 왼쪽 자식(피연산자) 가져오기
+        operator = elements[n]  # 연산자 가져오기
+        right_c = elements[int(right[n])]  # 오른쪽 자식(피연산자) 가져오기
         # result = eval(f'{left_c}{operator}{right_c}')
         result = ops[operator](int(left_c), int(right_c))  # 연산하기
         return result
@@ -46,7 +46,7 @@ for tc in range(1, 11):
     # 뒤에서부터 계산
     for i in range(len(elements) - 1, 0, -1):
         if elements[i] in operators:  # 연산자라면
-            # 중위순회? (연산하기)
-            elements[i] = in_order(i)
+            # 연산하기
+            elements[i] = calculate(i)
 
     print(f'#{tc} {int(elements[1])}')
