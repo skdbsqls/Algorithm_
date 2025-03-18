@@ -64,9 +64,55 @@ def merge_sort(li):
 
     return merged_list
 
+
 arr = [69, 10, 30, 2, 16, 8, 31, 22]
 sorted_arr = merge_sort(arr)
 print(sorted_arr)
+# ==========================
+# [오프라인] 병합정렬
+arr = [69, 10, 30, 2, 16, 8, 31, 22]
+
+
+# 병합정렬
+def merge_sort(numbers):
+    # 1. 가장 작아질 때까지 자르기
+    if len(numbers) == 1:  # 만약 현재 리스트의 원소가 하나 뿐이라면,
+        return numbers     # -> 더 이상 작아질 수 없음
+
+    # 그렇지 않으면 자르기
+    mid = len(numbers) // 2  # 자르는 포인트(중앙)
+
+    # 잘린 작은 리스트를 재귀호출 인자로 전달
+    left_nums = merge_sort(numbers[:mid])  # mid 기준 왼쪽
+    right_nums = merge_sort(numbers[mid:])  # mid 기준 오른쪽
+
+    # 2. 잘라진 리스트를 앞에서부터 비교하면서 합치기
+    new_nums = []  # 정렬된 새로운 리스트를 담을 리스트
+    left_idx = right_idx = 0  # 왼쪽, 오른쪽의 인덱스
+
+    # 왼쪽 또는 오른쪽 리스트의 원소들을 전부 확인할 때까지,
+    while left_idx < len(left_nums) and right_idx < len(right_nums):
+        # 왼쪽이 작은 경우
+        if left_nums[left_idx] < right_nums[right_idx]:
+            new_nums.append(left_nums[left_idx])
+            left_idx += 1  # 왼쪽 리스트는 다음 원소를 본다.
+
+        # 오른쪽이 작은 경우
+        else:
+            new_nums.append(right_nums[right_idx])
+            right_idx += 1
+
+    # 남은 것들을 배열에 담아줌
+    while left_idx < len(left_nums):
+        new_nums.append(left_nums[left_idx])
+        left_idx += 1
+
+    while right_idx < len(right_nums):
+        new_nums.append(right_nums[right_idx])
+        right_idx += 1
+
+    # 합쳐진 리스트를 반환하기
+    return new_nums
 
 
 # =====================================================================================================
