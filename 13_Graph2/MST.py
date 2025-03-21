@@ -128,8 +128,8 @@ for _ in range(E):
     edges.append((start, end, weight))  # 간선에 대한 정보들 저장
 
 edges.sort(key=lambda x: x[2])  # 가중치를 기준으로 오름차순 정렬
-for edge in edges:
-    print(edge)
+# for edge in edges:
+#     print(edge)
 parents = [i for i in range(V)]
 
 # 작은 것부터 고르면서 나아가자
