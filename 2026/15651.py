@@ -1,14 +1,14 @@
 N, M = map(int, input().split())
 answer = []
 
-def dfs():
-    if len(answer) == M:
+def dfs(cnt):
+    if cnt == M:
         print(*answer)
         return
 
     for i in range(1, N+1):
         answer.append(i)
-        dfs()
+        dfs(cnt + 1)
         answer.pop()
 
-dfs()
+dfs(0)
